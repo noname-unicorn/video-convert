@@ -3,7 +3,7 @@ const ffmpeg = require('fluent-ffmpeg');
 exports.videoConvertService = async () => {
 
   return new Promise((resolve, reject) => {
-    return ffmpeg.ffprobe('./test.mp4', (error, videoInfo) => {
+    return ffmpeg('./test.mp4', (error, videoInfo) => {
       if (error) {
         return reject(error);
       }
