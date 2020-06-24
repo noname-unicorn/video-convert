@@ -1,10 +1,11 @@
 const ffmpeg = require('fluent-ffmpeg');
-const fs = require('fs');
+const path = require('path');
 
 exports.videoConvertService = async () => {
 
   return new Promise((resolve, reject) => {
-    return ffmpeg.ffprobe(fs.createReadStream('../test-video/test.mp4'), (error, videoInfo) => {
+    const filePath = path.join(__dirname, '/test-video/test.mp4');
+    return ffmpeg.ffprobe(fs.createReadStream(filePath), (error, videoInfo) => {
       if (error) {
         return reject(error);
       }
