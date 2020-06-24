@@ -4,7 +4,7 @@ const path = require('path');
 exports.videoConvertService = async () => {
 
   return new Promise((resolve, reject) => {
-    const filePath = path.join(__dirname, './test-video/test.mp4');
+    const filePath = path.join('../test-video/test.mp4');
     return ffmpeg.ffprobe(filePath, (error, videoInfo) => {
       if (error) {
         return reject(error);
