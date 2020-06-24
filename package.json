@@ -1,0 +1,21 @@
+{
+  "name": "video-convert",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "srart": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noname-unicorn/video-convert.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/noname-unicorn/video-convert/issues"
+  },
+  "homepage": "https://github.com/noname-unicorn/video-convert#readme"
+}
