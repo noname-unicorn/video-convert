@@ -5,7 +5,7 @@ exports.videoConvertService = async () => {
 
   return new Promise((resolve, reject) => {
     const filePath = path.join(__dirname, '/test-video/test.mp4');
-    return ffmpeg.ffprobe(fs.createReadStream(filePath), (error, videoInfo) => {
+    return ffmpeg.ffprobe(filePath, (error, videoInfo) => {
       if (error) {
         return reject(error);
       }
