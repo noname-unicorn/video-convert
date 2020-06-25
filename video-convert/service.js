@@ -16,14 +16,10 @@ exports.videoConvertService = async () => {
   //     });
   //   })
   // });
-  ffmpeg.getAvailableEncoders((err, encoders) => {
-    console.log('getAvailableEncoders', encoders);
-    return encoders;
-  });
   ffmpeg('video-convert/test.mp4')
     .videoCodec('libx264')
     .audioCodec('libmp3lame')
-    .size('320x240')
+    .size('640x480')
     .on('error', function(err) {
       console.log('An error occurred: ' + err.message);
       return err.message

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "srart": "node server.js",
-    "start-dev": "nodemon --inspect ./server.js 80"
+    "dev": "nodemon --inspect ./server.js 80"
   },
   "repository": {
     "type": "git",
