@@ -32,5 +32,5 @@ exports.videoConvertService = async () => {
       console.log('Processing finished !');
       return 'Success';
     })
-    .save('/path/to/output.mp4');
+    .save('/output.mp4');
 };
