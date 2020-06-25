@@ -16,7 +16,7 @@ exports.videoConvertService = async () => {
   //     });
   //   })
   // });
-  FfmpegCommand.getAvailableEncoders((err, encoders) => {
+  ffmpeg.getAvailableEncoders((err, encoders) => {
     console.log('getAvailableEncoders', encoders);
     return encoders;
   });
