@@ -16,17 +16,21 @@ exports.videoConvertService = async () => {
   //     });
   //   })
   // });
-  ffmpeg('video-convert/test.mp4')
-    .videoCodec('libx264')
-    .audioCodec('libmp3lame')
-    .size('320x240')
-    .on('error', function(err) {
-      console.log('An error occurred: ' + err.message);
-      return err.message
-    })
-    .on('end', function() {
-      console.log('Processing finished !');
-      return 'Success';
-    })
-    .save('/path/to/output.mp4');
+  FfmpegCommand.getAvailableEncoders((err, encoders) => {
+    console.log('getAvailableEncoders', encoders);
+    return encoders;
+  });
+  // ffmpeg('video-convert/test.mp4')
+  //   .videoCodec('libx264')
+  //   .audioCodec('libmp3lame')
+  //   .size('320x240')
+  //   .on('error', function(err) {
+  //     console.log('An error occurred: ' + err.message);
+  //     return err.message
+  //   })
+  //   .on('end', function() {
+  //     console.log('Processing finished !');
+  //     return 'Success';
+  //   })
+  //   .save('/path/to/output.mp4');
 };
