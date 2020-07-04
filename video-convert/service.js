@@ -14,6 +14,12 @@ exports.videoConvertService = async (cb) => {
     })
     .on('end', function() {
       ffmpeg.ffprobe('video-convert/output.mp4', (error, videoInfo) => {
+        if (error) {
+          cb({
+            code: 400,
+            data: error,
+          })
+        }
         const { duration, size } = videoInfo.format;
         fs.unlink('video-convert/output.mp4', (err) => {
           if (err) {
