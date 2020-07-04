@@ -1,32 +1,37 @@
 const ffmpeg = require('fluent-ffmpeg');
+const fs = require('fs');
 
-exports.videoConvertService = async () => {
-
-  // return new Promise((resolve, reject) => {
-  //   return ffmpeg.ffprobe('video-convert/test.mp4', (error, videoInfo) => {
-  //     if (error) {
-  //       return reject(error);
-  //     }
-  //
-  //     const { duration, size } = videoInfo.format;
-  //     console.log({duration, size});
-  //     return resolve({
-  //       size,
-  //       durationInSeconds: Math.floor(duration),
-  //     });
-  //   })
-  // });
-  ffmpeg('video-convert/test.mp4')
+exports.videoConvertService = async (cb) => {
+  await ffmpeg('video-convert/test.mp4')
     .videoCodec('libx264')
-    .audioCodec('libmp3lame')
-    .size('640x480')
+    .audioCodec('aac')
+    .videoBitrate('700k')
     .on('error', function(err) {
-      console.log('An error occurred: ' + err.message);
-      return err.message
+      cb({
+        code: 400,
+        data: err.message
+      })
     })
     .on('end', function() {
-      console.log('Processing finished !');
-      return 'Success';
+      ffmpeg.ffprobe('video-convert/output.mp4', (error, videoInfo) => {
+        const { duration, size } = videoInfo.format;
+        fs.unlink('video-convert/output.mp4', (err) => {
+          if (err) {
+            cb({
+              code: 400,
+              data: `Error to remove file ${err}`
+            })
+          }
+          cb({
+            code: 200,
+            data: {
+              duration,
+              size,
+              message: 'delete file success',
+            }
+          })
+        })
+      });
     })
     .save('video-convert/output.mp4');
 };
